@@ -10,6 +10,10 @@ import { RestService } from './rest.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  constructor(private restSer: RestService) {
+
+  }
   title = 'app';
   inputText: string;
   output: any;
@@ -19,47 +23,27 @@ export class AppComponent {
   convertFrom: string;
   convertTo: string;
   optionList = [
-    {
-      label: 'JSON Validator',
-      value: 'validator'
-    }, {
-      label: 'JSON Formater',
-      value: 'formater'
-    },
-    {
-      label: 'Converter',
-      value: 'converter'
-    },
-    {
-      label: 'PDF Merger',
-      value: 'merger'
-    }
+    { label: 'Converter', value: 'converter' },
+    { label: 'JSON Formater', value: 'formater' },
+    { label: 'JSON Validator', value: 'validator' },
+    { label: 'PDF Merger', value: 'merger' }
   ];
   convertTypes: [
-    {
-      label: 'Select',
-      value: ''
-    },
-    {
-      label: 'Excel',
-      value: 'excel'
-    },
-    {
-      label: 'JSON',
-      value: 'json'
-    },
-    {
-      label: 'XML',
-      value: 'xml'
-    },
-    {
-      label: 'PDF',
-      value: 'pdf'
-    },
-    {
-      label: 'Word',
-      value: 'word'
-    }
+    { label: 'Select', value: '' },
+    { label: 'Excel', value: 'excel' },
+    { label: 'JSON', value: 'json' },
+    { label: 'PDF', value: 'pdf' },
+    { label: 'Word', value: 'word' },
+    { label: 'XML', value: 'xml' }
+  ];
+  conversionTypes: [
+    { label: 'Select Conversion type', value: '' },
+    { label: 'Excel to JSON', value: 'xlsxtojson' },
+    { label: 'JSON to Excel', value: 'jsontoxlsx' },
+    { label: 'JSON to XML', value: 'jsontoxml' },
+    { label: 'PDF to Word', value: 'pdftodocx' },
+    { label: 'Word to PDF', value: 'docxtopdf' },
+    { label: 'XML to JSON', value: 'xmltojson' }
   ];
   totalLines: any = [];
   uploader: FileUploader;
@@ -81,11 +65,10 @@ export class AppComponent {
   outputPath = '';
   conversionSuccess: boolean;
   mergeSuccess: boolean;
+
+
   ngOnInit() {
     this.setUrl();
-  }
-  constructor(private restSer: RestService) {
-
   }
 
   validateInput(from) {
